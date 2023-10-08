@@ -1,7 +1,6 @@
 import { Container, Box, Typography } from "@mui/material";
 import { styled } from "@mui/system";
-import Chart from "./rotate";
-import humidity from '../assets/humidity.svg'
+import Chart from "./chart";
 
 const BoxWrapper = styled(Box)({
   display: "flex",
@@ -37,39 +36,40 @@ const CardBoxSecond = styled(Box)({
 });
 const ChartBox = styled(Box)({
   background: "#FFFFFF",
-  height: "300px",
+  height: "320px",
   boxShadow: " 2px 4px 20px 0px rgba(0, 0, 0, 0.25);",
   borderRadius: "0.375rem",
   margin: 10,
+  padding: "20px 30px 0 0",
 });
 
 const Humidity = styled('img')({
     width: 60
 })
 
-const Main = ({ data1, data2 }) => {
+const Main = ({temperatureData, humidityData}) => {
   return (
     <Container maxWidth="xl">
       <BoxWrapper>
         <BoxChart>
-          <Chart data={data1} />
+          <Chart data={temperatureData} dataValue={"temperature"} />
         </BoxChart>
         <Box>
           <BoxContainer>
             <CardBox>
                 <Typography>Humidity</Typography>
-                <Humidity src={humidity} />
+                <Humidity />
             </CardBox>
             <CardBox></CardBox>
           </BoxContainer>
           <CardBoxSecond />
         </Box>
         <BoxChart>
-          <Chart data={data1} />
+          <Chart data={humidityData} dataValue={"humidity"} />
         </BoxChart>
       </BoxWrapper>
       <ChartBox>
-        <Chart data={data2} />
+        <Chart  data={temperatureData} dataValue={"temperature"} />
       </ChartBox>
     </Container>
   );

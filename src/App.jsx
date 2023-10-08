@@ -1,36 +1,30 @@
 import { styled } from "@mui/system";
+import { useState } from 'react';
 import Header from "./components/header";
 import Main from "./components/main";
 import CssBaseline from "@mui/material/CssBaseline";
-// import WebSocketComponent from './components/WebSocketComponent';
+import DataFetchingComponent from './components/DataFetchingComponent';
 
 const AppContainer = styled("div")({
   backgroundColor: "#FAFFFF", 
   minHeight: '100vh'
 });
 
-function App() {
-  const data1 = [
-    { name: "12.00", value: 0 },
-    { name: "12.10", value: 30 },
-    { name: "12.20", value: 45 },
-    { name: "12.20", value: 55 },
-    { name: "12.20", value: 90 },
-  ];
+const App = () => {
+  const [temperatureData, setTemperatureData] = useState([]);
+  const [humidityData, setHumidityData] = useState([]);
 
-  const data2 = [
-    { name: "12.00", value: 0 },
-    { name: "12.10", value: 30 },
-    { name: "12.20", value: 45 },
-    { name: "12.20", value: 0 },
-    { name: "12.20", value: 90 },
-  ];
+  const handleDataFetched = ({ temperatureData, humidityData }) => {
+    setTemperatureData(temperatureData);
+    setHumidityData(humidityData);
+  };
+
   return (
     <AppContainer>
       <CssBaseline />
       <Header />
-      <Main data1={data1} data2={data2} />
-      {/* <WebSocketComponent /> */}
+      <Main temperatureData={temperatureData} humidityData={humidityData}/>
+      <DataFetchingComponent onDataFetched={handleDataFetched} />
     </AppContainer>
   );
 }
