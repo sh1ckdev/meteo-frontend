@@ -1,6 +1,8 @@
-import { Container, Box, Typography } from "@mui/material";
+import { Container, Box, Typography, Grid  } from "@mui/material";
 import { styled } from "@mui/system";
 import Chart from "./chart";
+import WaterDropIcon from '@mui/icons-material/WaterDrop';
+import ThermostatIcon from '@mui/icons-material/Thermostat';
 
 const BoxWrapper = styled(Box)({
   display: "flex",
@@ -26,6 +28,8 @@ const CardBox = styled(Box)({
   boxShadow: " 2px 4px 20px 0px rgba(0, 0, 0, 0.25);",
   borderRadius: "0.375rem",
   margin: 10,
+  display: "flex",
+  alignItems: "center", 
 });
 const CardBoxSecond = styled(Box)({
   background: "#FFFFFF",
@@ -43,11 +47,8 @@ const ChartBox = styled(Box)({
   padding: "20px 30px 0 0",
 });
 
-const Humidity = styled('img')({
-    width: 60
-})
-
 const Main = ({temperatureData, humidityData}) => {
+ 
   return (
     <Container maxWidth="xl">
       <BoxWrapper>
@@ -56,11 +57,32 @@ const Main = ({temperatureData, humidityData}) => {
         </BoxChart>
         <Box>
           <BoxContainer>
-            <CardBox>
-                <Typography>Humidity</Typography>
-                <Humidity />
+          <CardBox>
+              <Grid container spacing={2}>
+                <Grid item xs={3}>
+                  <WaterDropIcon color='primary' sx={{ fontSize: 40 }} />
+                </Grid>
+                <Grid item xs={9}>
+                  <Box>
+                    <Typography variant="h5">Humidity</Typography>
+                    <Typography>20%</Typography>
+                  </Box>
+                </Grid>
+              </Grid>
             </CardBox>
-            <CardBox></CardBox>
+            <CardBox>
+              <Grid container spacing={2}>
+                <Grid item xs={3}>
+                  <ThermostatIcon color='Secondary' sx={{ fontSize: 40 }} />
+                </Grid>
+                <Grid item xs={9}>
+                  <Box>
+                    <Typography variant="h6">Temperature</Typography>
+                    <Typography>20 °C</Typography>
+                  </Box>
+                </Grid>
+              </Grid>
+            </CardBox>
           </BoxContainer>
           <CardBoxSecond />
         </Box>
