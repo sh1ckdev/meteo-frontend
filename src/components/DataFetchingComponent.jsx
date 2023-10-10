@@ -2,9 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const DataFetchingComponent = ({ onDataFetched }) => {
-  // for (i = 0, i >= 0, i++) {
-
-  // }
   const [dataFromEndpoint1, setDataFromEndpoint1] = useState([]);
   const [dataFromEndpoint2, setDataFromEndpoint2] = useState([]);
 
